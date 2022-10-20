@@ -23,12 +23,15 @@ const getUsersById = (req = request, res = response) => {
 
 const createUser = async (req = request, res = response) => {
   //url//api//users/ -< body: es el objeto en json
-  const body = req.body
-  const user = new User(body)
+  const { name, email, password, role } = req.body
+  const user = new User({ name, email, password, role })
+
+  user.password = bcryptjs.hashSync(password, bcryptjs.genSaltSync())
+
   await user.save()
 
   res.status(201).json({
-    msg: 'post API - controller',
+    msg: 'post API- controller',
     user,
   })
 }
