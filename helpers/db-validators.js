@@ -14,7 +14,16 @@ const emailExist = async (email = '') => {
     throw new Error(`Este correo ya está registrado; que buscate otro perro`)
   }
 }
+
+const userByIdExists = async (id = '') => {
+  const user = await User.findById(id)
+  if (!user) {
+    throw new Error(`El usuario con id ${id} no existe en la BD`)
+  }
+}
+
 module.exports = {
   isValidRole,
   emailExist,
+  userByIdExists,
 }
