@@ -38,4 +38,4 @@ UserScheman.methods.toJSON = function () {
   return user
 }
 
-module.exports = model('users', UserScheman)
+module.exports = model('User', UserScheman)
